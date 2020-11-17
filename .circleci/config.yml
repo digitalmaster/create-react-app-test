@@ -7,8 +7,16 @@ jobs:
       - checkout
       - run: yarn install
       - run: yarn run build
+  lint:
+    docker:
+      - image: circleci/node:14.15
+    steps:
+      - checkout
+      - run: yarn install
+      - run: yarn run lint
 workflows:
   version: 2
   build_and_lint:
     jobs:
       - build
+      - lint
